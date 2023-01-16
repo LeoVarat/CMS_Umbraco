@@ -1,0 +1,11 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Home>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "_Layout.cshtml";
+	ViewData["Title"] = @Model.Value("homeTitle");
+}
+
+@await Html.PartialAsync("ShowCase")
+
+@await Html.PartialAsync("FeaturedProducts")
