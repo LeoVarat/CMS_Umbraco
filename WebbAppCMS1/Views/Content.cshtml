@@ -1,5 +1,5 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Home>
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Content>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
 	Layout = "_Layout.cshtml";
@@ -8,6 +8,4 @@
 	ViewData["PageKeywords"] = Model.Value("pageKeyworks", fallback: Fallback.ToDefaultValue, defaultValue: new HtmlString (""));
 }
 
-@await Html.PartialAsync("ShowCase")
-
-@await Html.PartialAsync("FeaturedProducts")
+@await Html.GetBlockGridHtmlAsync(Model.ContentPageBlock);
