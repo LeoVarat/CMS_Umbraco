@@ -1,0 +1,42 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core
+@using Umbraco.Cms.Core.Models.PublishedContent
+@using Umbraco.Cms.Core.Routing
+@using Umbraco.Extensions
+
+@inject IPublishedValueFallback PublishedValueFallback
+@inject IPublishedUrlProvider PublishedUrlProvider
+@*
+    This snippet displays a list of links of the pages immediately under the top-most page in the content tree.
+    This is the home page for a standard website.
+    It also highlights the current active page/section in the navigation with the CSS class "current".
+*@
+
+@{ 
+    var site = Model.Root();
+    var selection = site.Children.Where(x => x.IsVisible(PublishedValueFallback)).ToArray(); 
+}
+
+
+
+        <nav class="__navbar container ">
+            <div class="__logo">
+                Fixxo.
+            </div>
+            <div class="__nav-links">
+                <ul class="_navbar nav">
+                    <li class="nav-item"><a class="nav-link @(Model.Id == site.Id) ? "_active" : null)" href="@site.Url()">@site.Name</a></li>
+                @if (selection?.Length > 0)
+                    {
+                        @foreach (var item in selection){
+                            <li class=" nav-item">
+                                <a class="nav-link @(item.IsAncestorOrSelf(Model) ? "_active" : null)" href="@item.Url(PublishedUrlProvider)">@item.Name</a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+            <div class="__nav-icon-links">
+                <a href="#"><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-theme"></span><i class="fa-regular fa-bag-shopping"></i></a>
+            </div>
+        </nav>

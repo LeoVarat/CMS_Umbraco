@@ -2,6 +2,9 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
 	Layout = null;
+	ViewData["PageTitle"] = Model.Value("pageTitle");
+	ViewData["PageDescription"] = Model.Value("pageDescription", fallback: Fallback.ToDefaultValue, defaultValue: new HtmlString (""));
+	ViewData["PageKeywords"] = Model.Value("pageKeyworks", fallback: Fallback.ToDefaultValue, defaultValue: new HtmlString (""));
 }
 
 <!DOCTYPE html>
@@ -20,9 +23,9 @@
 
 </head>
 <body>
-    @await Html.PartialAsync("Navbar")
+     @await Html.PartialAsync("Navbars")
 
-    @RenderBody(); 
+    @RenderBody() 
 
     @await Html.PartialAsync("Footer")
 

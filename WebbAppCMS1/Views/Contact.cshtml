@@ -3,10 +3,9 @@
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
 	Layout = "_Layout.cshtml";
-	ViewData["Title"] = @Model.Value("contactTitle");
 }
 
-@await Html.PartialAsync("ContactBreadcrumbs")
+@await Html.PartialAsync("Breadcrumbs")
 
 @await Html.PartialAsync("Map")
 

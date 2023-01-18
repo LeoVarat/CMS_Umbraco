@@ -1,0 +1,60 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ProductPageList>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models.PublishedContent;
+
+
+@{
+	Layout = "_Layout.cshtml";
+}
+
+<div class="featured-products">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                @{
+                    var featuredProducts = Model.Value<IPublishedContent>("featuredProducts");
+                    if (featuredProducts != null)
+                    {
+                <div class="col">
+                    <div class="card">
+                        <div class="img">
+                            @{
+                                IPublishedContent featuredProductsImage = featuredProducts.Value<IPublishedContent>("productImage");
+                            }
+                            <img src="featuredProductsImage" alt="">
+                            <div class="card-menu">
+                                <a href="#"><i class="fa-regular fa-bag-shopping"></i></a>
+                            </div>
+                            <a class="__btn-theme btn-card-theme" href="/produkter/">
+                                <span class="__btn-theme-left"></span>  
+                                <span class="__btn-theme-right"></span>
+                                QUICK VIEW
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-category">@featuredProducts.Value("productDescription")</p>
+                            <h5 class="card-title">@featuredProducts.Value("productTitle")</h5>
+                            <p class="card-rating">
+                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i class="fa-sharp fa-solid fa-star"></i>
+                            </p>
+                            <p class="card-price">$@featuredProducts.Value("productPricing")</p>
+                        </div>
+                    </div>
+                </div>
+                    
+                    }
+                    
+                }
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+</div>

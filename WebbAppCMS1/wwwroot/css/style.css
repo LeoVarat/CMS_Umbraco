@@ -114,6 +114,11 @@ header {
                 color: var(--color-theme);
                 text-decoration: none;
             }
+            .__navbar .__nav-links .__navbar a:active,
+            .__navbar .__nav-links .__navbar .__active { 
+                color: var(--color-theme);
+                text-decoration: none;
+            }
 
 
     .__nav-icon-links {
